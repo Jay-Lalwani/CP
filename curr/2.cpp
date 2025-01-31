@@ -25,7 +25,7 @@ template <typename T>
 constexpr auto MIN = std::numeric_limits<T>::min();
 
 template <typename T>
-constexpr auto MAX = std::numeric_limits<T>::max();
+constexpr auto MAX = std::numeric_limits<T>::min();
 
 // Other
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
@@ -37,7 +37,31 @@ void NO() { cout << "NO\n"; }
 #define ignoreline cin.ignore(numeric_limits<streamsize>::max(), '\n')
 
 void solve() {
-    
+    int n;
+    cin >> n;
+
+    int arr[n];
+
+    for (int i=0; i < n; i++) {
+        int pos = 0;
+        while (pos++ < 4) {
+            char c;
+            cin >> c;
+            if (c == '#'){
+                ignoreline;
+                break;
+            }
+        }
+        arr[n - 1 - i] = pos;
+    }
+
+    for (int x : arr) {
+        cout << x << ' ';
+    }
+
+    cout << '\n';
+
+
 }
 
 int main() {

@@ -37,7 +37,34 @@ void NO() { cout << "NO\n"; }
 #define ignoreline cin.ignore(numeric_limits<streamsize>::max(), '\n')
 
 void solve() {
-    
+    // number of triangles
+    int n;
+    cin >> n;
+
+    int points[n+1][2] = {0};
+
+    for (int i=0; i < n; i++) {
+        int x, y;
+        cin >> x >> y;
+        points[x][y] = 1;
+    }
+
+    ll ans = 0;
+    for (int i=0; i <= n; i++) {
+        if (points[i][0] && points[i][1]) 
+            ans += n - 2;
+        
+        if (i >= 1 && i < n ) {
+            if (points[i][0])
+                ans += (points[i+1][1] && points[i-1][1]);
+            
+            if (points[i][1]) 
+                ans += (points[i+1][0] && points[i-1][0]);
+        }
+    }
+
+    cout << ans << '\n';
+
 }
 
 int main() {
